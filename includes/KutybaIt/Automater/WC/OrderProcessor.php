@@ -153,7 +153,7 @@ class OrderProcessor {
 
 	protected function create_automater_payment( WC_Order $order, $automater_cart_id, &$result ) {
 		$payment_id  = $order->get_id();
-		$amount      = $order->get_subtotal();
+		$amount      = $order->get_total();
 		$description = $order->get_payment_method();
 
 		try {
