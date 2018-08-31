@@ -129,7 +129,7 @@ class Integration extends WC_Integration {
 
 	protected function init_order_hooks() {
 		// Hook order placed
-		add_action( 'woocommerce_process_shop_order_meta', [ new OrderProcessor( $this ), 'order_placed' ] );
+		add_action( 'woocommerce_checkout_update_order_meta', [ new OrderProcessor( $this ), 'order_placed' ] );
 		// Hook order processing (paid)
 		add_action( 'woocommerce_order_status_processing', [ new OrderProcessor( $this ), 'order_processing' ] );
 	}
