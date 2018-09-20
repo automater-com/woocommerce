@@ -135,6 +135,12 @@ class OrderProcessor {
 
 	protected function pay_transaction( $order_id ) {
 		$order             = wc_get_order( $order_id );
+
+        $orderData = $order->get_data();
+        if (isset($orderData['payment_method']) && $orderData['payment_method'] == 'cod') {
+            return;
+        }
+
 		$automater_cart_id = $order->get_meta( 'automater_cart_id' );
 
 		if ( ! $automater_cart_id ) {
