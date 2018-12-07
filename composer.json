@@ -1,6 +1,7 @@
 {
     "name": "kutybait/automater-woocommerce",
     "description": "WooCommerce integration with Automater.pl",
+    "version": "0.1.7",
     "type": "wordpress-plugin",
     "require": {
         "php-di/php-di": "^5.4",

@@ -78,7 +78,7 @@ class OrderProcessor {
 				}
 				if ( ! isset( $products[ $automater_product_id ] ) ) {
 					$products[ $automater_product_id ]['qty']      = 0;
-					$products[ $automater_product_id ]['price']    = $item->get_product()->get_price();
+					$products[ $automater_product_id ]['price']    = round($item->get_total() + $item->get_total_tax(), 2);
 					$products[ $automater_product_id ]['currency'] = get_woocommerce_currency();
 				}
 				$products[ $automater_product_id ]['qty'] += $qty;
