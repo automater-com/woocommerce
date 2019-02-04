@@ -195,6 +195,7 @@ class Synchronizer {
 			}
 
 			$this->update_product_stock_from_automater( $product, $automater_product_id );
+            usleep(rand(200000, 500000));
 			$updated ++;
 		}
 

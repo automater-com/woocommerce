@@ -106,6 +106,7 @@ class Proxy {
 		$data             = $productsResponse->getData();
 
 		for ( $page = 2; $page <= $productsResponse->getPagesCount(); $page ++ ) {
+            usleep(rand(200000, 500000));
 			$productsResponse = $this->get_products( $page );
 			$data             = array_merge( $data, $productsResponse->getData() );
 		}
