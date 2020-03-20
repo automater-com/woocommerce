@@ -91,10 +91,10 @@ class Proxy {
 	 * @throws TooManyRequestsException
 	 * @throws UnauthorizedException
 	 */
-	public function create_payment( $cart_id, $payment_id, $amount, $description ) {
+	public function create_payment( $cart_id, $payment_id, $amount, $currency, $description ) {
 		$paymentRequest = new PaymentRequest();
 		$paymentRequest->setPaymentId( $payment_id );
-		$paymentRequest->setCurrency( get_woocommerce_currency() );
+		$paymentRequest->setCurrency( $currency );
 		$paymentRequest->setAmount( $amount );
 		$paymentRequest->setDescription( $description );
 

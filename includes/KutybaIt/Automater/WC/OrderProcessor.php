@@ -161,10 +161,11 @@ class OrderProcessor {
 		$payment_id  = $order->get_id();
 		$amount      = $order->get_total();
 		$description = $order->get_payment_method();
+		$currency    = $order->get_currency();
 
 		try {
 			/** @var PaymentResponse $response */
-			$response = $this->proxy->create_payment( $automater_cart_id, $payment_id, $amount, $description );
+			$response = $this->proxy->create_payment( $automater_cart_id, $payment_id, $amount, $currency, $description );
 			if ( $this->integration->get_debug_log() ) {
 				wc_get_logger()->notice( 'Automater.pl: ' . var_export( $response, true ) );
 			}
