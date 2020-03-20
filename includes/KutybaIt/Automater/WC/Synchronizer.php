@@ -187,7 +187,7 @@ class Synchronizer {
 			exit();
 		}
 		$updated  = 0;
-		$products = wc_get_products( [ 'automater_product' => '' ] );
+		$products = wc_get_products(['limit' => 1000000]);
 		foreach ( $products as $product ) {
 			$automater_product_id = $this->integration->get_automater_product_id_for_wc_product( $product );
 			if ( ! $automater_product_id ) {
@@ -207,7 +207,10 @@ class Synchronizer {
 	 * @param $automater_product_id string
 	 */
 	protected function update_product_stock_from_automater( $product, $automater_product_id ) {
+        wc_get_logger()->notice( 'Automater.pl: Trying to update product stock: ID ' . $product->get_id() );
+
 		if ( ! $product->get_manage_stock() ) {
+            wc_get_logger()->notice( 'Automater.pl: Continuing, product does not using managed stock' );
 			return;
 		}
 
