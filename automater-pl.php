@@ -49,7 +49,7 @@ function deactivate_automater_pl() {
 register_activation_hook( __FILE__, 'activate_automater_pl' );
 register_deactivation_hook( __FILE__, 'deactivate_automater_pl' );
 
-function di( $name ) {
+function di_automater_pl( $name ) {
 	return DI::getInstance()->getContainer()->get( $name );
 }
 

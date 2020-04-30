@@ -25,7 +25,7 @@ class Automater {
 	}
 
 	private function set_locale() {
-		add_action( 'plugins_loaded', [ di( I18n::class ), 'load_plugin_textdomain' ] );
+		add_action( 'plugins_loaded', [ di_automater_pl( I18n::class ), 'load_plugin_textdomain' ] );
 	}
 
 	private function init_wc_actions() {
