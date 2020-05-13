@@ -6,8 +6,8 @@
  * Version: 0.2.2
  * Author: Automater sp. z o.o.
  * Author URI: https://automater.com
- * Requires at least: 4.8
- * Tested up to: 4.9
+ * Requires at least: 5.0
+ * Tested up to: 5.4
  *
  * Text Domain: automater
  * Domain Path: /languages
