@@ -1,8 +1,8 @@
 <?php
 
-namespace KutybaIt\Automater\WC;
+namespace Automater\WC;
 
-use KutybaIt\Automater\Notice;
+use Automater\WC\Notice;
 use WC_Admin_Settings;
 use WC_Integration;
 use WC_Product;
@@ -46,41 +46,41 @@ class Integration extends WC_Integration {
 
 	protected function init_integration() {
 		$this->id                 = 'automater-integration';
-		$this->method_title       = __( 'Automater.pl', 'automater-pl' );
-		$this->method_description = sprintf( __( 'An integration with Automater.pl by %s', 'automater-pl' ), '<A href="https://kutyba.it" target="_blank">kutyba.it</a>' );
+		$this->method_title       = __( 'Automater', 'automater' );
+		$this->method_description = sprintf( __( 'An integration with Automater by %s', 'automater' ), '<a href="https://automater.com" target="_blank">Automater sp. z o.o.</a>' );
 		$link_import              = admin_url( 'admin-ajax.php?action=import_automater_products&nonce=' . wp_create_nonce( 'import_automater_products_nonce' ) );
 		$link_stocks              = admin_url( 'admin-ajax.php?action=update_automater_stocks&nonce=' . wp_create_nonce( 'update_automater_stocks_nonce' ) );
-		$this->method_description .= '<br><br><a href="' . $link_import . '" class="page-title-action">' . __( 'Import products from your Automater.pl account', 'automater-pl' ) . '</a>';
-		$this->method_description .= '<br><br><a href="' . $link_stocks . '" class="page-title-action">' . __( 'Update products stocks', 'automater-pl' ) . '</a>';
+		$this->method_description .= '<br><br><a href="' . $link_import . '" class="page-title-action">' . __( 'Import products from your Automater account', 'automater' ) . '</a>';
+		$this->method_description .= '<br><br><a href="' . $link_stocks . '" class="page-title-action">' . __( 'Update products stocks', 'automater' ) . '</a>';
 	}
 
 	public function init_form_fields() {
 		$this->form_fields = [
 			'api_key'         => [
-				'title'       => __( 'API Key', 'automater-pl' ),
+				'title'       => __( 'API Key', 'automater' ),
 				'type'        => 'text',
-				'description' => __( 'Login to Automater.pl and get keys from Settings / settings / API', 'automater-pl' ),
+				'description' => __( 'Login to Automater and get keys from Settings / settings / API', 'automater' ),
 				'desc_tip'    => true,
 				'default'     => ''
 			],
 			'api_secret'      => [
-				'title'       => __( 'API Secret', 'automater-pl' ),
+				'title'       => __( 'API Secret', 'automater' ),
 				'type'        => 'text',
-				'description' => __( 'Login to Automater.pl and get keys from Settings / settings / API', 'automater-pl' ),
+				'description' => __( 'Login to Automater and get keys from Settings / settings / API', 'automater' ),
 				'desc_tip'    => true,
 				'default'     => ''
 			],
 			'debug_log'       => [
-				'title'       => __( 'Debug Log', 'automater-pl' ),
+				'title'       => __( 'Debug Log', 'automater' ),
 				'type'        => 'checkbox',
-				'description' => __( 'Enable the logging of API calls and errors', 'automater-pl' ),
+				'description' => __( 'Enable the logging of API calls and errors', 'automater' ),
 				'desc_tip'    => true,
 				'default'     => 'no'
 			],
 			'enable_cron_job' => [
-				'title'       => __( 'Synchronize stocks every 5 minutes', 'automater-pl' ),
+				'title'       => __( 'Synchronize stocks every 5 minutes', 'automater' ),
 				'type'        => 'checkbox',
-				'description' => __( 'Enable cron job to synchronize products stocks', 'automater-pl' ),
+				'description' => __( 'Enable cron job to synchronize products stocks', 'automater' ),
 				'desc_tip'    => true,
 				'default'     => 'no'
 			]
@@ -113,17 +113,17 @@ class Integration extends WC_Integration {
 
 	protected function display_status_message() {
 		if ( isset( $_REQUEST['import'] ) && $_REQUEST['import'] === 'success' ) {
-			WC_Admin_Settings::add_message( __( 'Products import success.', 'automater-pl' ) );
+			WC_Admin_Settings::add_message( __( 'Products import success.', 'automater' ) );
 		} elseif ( isset( $_REQUEST['import'] ) && $_REQUEST['import'] === 'failed' ) {
-			WC_Admin_Settings::add_error( __( 'Products import failed. Check logs.', 'automater-pl' ) );
+			WC_Admin_Settings::add_error( __( 'Products import failed. Check logs.', 'automater' ) );
 		} elseif ( isset( $_REQUEST['import'] ) && $_REQUEST['import'] === 'nothing' ) {
-			WC_Admin_Settings::add_message( __( 'Nothing new to import.', 'automater-pl' ) );
+			WC_Admin_Settings::add_message( __( 'Nothing new to import.', 'automater' ) );
 		}
 
 		if ( isset( $_REQUEST['update'] ) && $_REQUEST['update'] === 'success' ) {
-			WC_Admin_Settings::add_message( __( 'Stocks update success.', 'automater-pl' ) );
+			WC_Admin_Settings::add_message( __( 'Stocks update success.', 'automater' ) );
 		} elseif ( isset( $_REQUEST['update'] ) && $_REQUEST['update'] === 'nothing' ) {
-			WC_Admin_Settings::add_message( __( 'Nothing to update.', 'automater-pl' ) );
+			WC_Admin_Settings::add_message( __( 'Nothing to update.', 'automater' ) );
 		}
 	}
 
@@ -153,10 +153,10 @@ class Integration extends WC_Integration {
 		);
 
 		if ( ! $exists ) {
-			wc_get_logger()->notice( "Automater.pl: Create product attribute '$attribute_name'" );
+			wc_get_logger()->notice( "Automater: Create product attribute '$attribute_name'" );
 			$wpdb->insert( $wpdb->prefix . "woocommerce_attribute_taxonomies", [
 				'attribute_name'    => $attribute_name,
-				'attribute_label'   => __( 'Automater Product', 'automater-pl' ),
+				'attribute_label'   => __( 'Automater Product', 'automater' ),
 				'attribute_type'    => 'select',
 				'attribute_orderby' => 'menu_order',
 				'attribute_public'  => 0,
@@ -188,7 +188,7 @@ class Integration extends WC_Integration {
 	public function validate_api_key_field( $key, $value ) {
 		$value = trim( $value );
 		if ( ! $this->valid_key( $value ) ) {
-			WC_Admin_Settings::add_error( __( 'Looks like you made a mistake with the API Key field. Make sure it is 32 characters copied from Automater.pl settings', 'automater-pl' ) );
+			WC_Admin_Settings::add_error( __( 'Looks like you made a mistake with the API Key field. Make sure it is 32 characters copied from Automater settings', 'automater' ) );
 		}
 
 		return $value;
@@ -197,7 +197,7 @@ class Integration extends WC_Integration {
 	public function validate_api_secret_field( $key, $value ) {
 		$value = trim( $value );
 		if ( ! $this->valid_key( $value ) ) {
-			WC_Admin_Settings::add_error( __( 'Looks like you made a mistake with the API Secret field. Make sure it is 32 characters copied from Automater.pl settings', 'automater-pl' ) );
+			WC_Admin_Settings::add_error( __( 'Looks like you made a mistake with the API Secret field. Make sure it is 32 characters copied from Automater settings', 'automater' ) );
 		}
 
 		return $value;
@@ -225,7 +225,7 @@ class Integration extends WC_Integration {
 		}
 
 		$url = $this->get_settings_url();
-		Notice::render_notice( __( 'Automater.pl integration is almost ready. To get started, connect your account by providing API Keys.', 'automater-pl' ) . ' <a href="' . esc_url( $url ) . '">' . __( 'Go to settings', 'automater-pl' ) . '</a>' );
+		Notice::render_notice( __( 'Automater integration is almost ready. To get started, connect your account by providing API Keys.', 'automater' ) . ' <a href="' . esc_url( $url ) . '">' . __( 'Go to settings', 'automater' ) . '</a>' );
 	}
 
 	/**

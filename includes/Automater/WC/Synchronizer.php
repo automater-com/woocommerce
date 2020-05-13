@@ -1,8 +1,8 @@
 <?php
 
-namespace KutybaIt\Automater\WC;
+namespace Automater\WC;
 
-use KutybaIt\Automater\Automater\Proxy;
+use Automater\WC\Proxy;
 use WC_Product;
 
 class Synchronizer {
@@ -75,19 +75,19 @@ class Synchronizer {
 			];
 
 			if ( $this->integration->get_debug_log() ) {
-				wc_get_logger()->notice( 'Automater.pl: Importing product: ID ' . $product_id );
+				wc_get_logger()->notice( 'Automater: Importing product: ID ' . $product_id );
 			}
 			$ret = wp_insert_term( $product->getName(), $taxonomy, $params );
 			if ( $ret && ! is_wp_error( $ret ) ) {
 				$imported ++;
 			} else {
-				wc_get_logger()->error( 'Automater.pl: Product was not imported because of error: ID ' . $product_id );
+				wc_get_logger()->error( 'Automater: Product was not imported because of error: ID ' . $product_id );
 			}
 		}
 
 		foreach ( $to_delete as $delete ) {
 			if ( $this->integration->get_debug_log() ) {
-				wc_get_logger()->notice( 'Automater.pl: Deleting not existing product: ID ' . $delete );
+				wc_get_logger()->notice( 'Automater: Deleting not existing product: ID ' . $delete );
 			}
 			wp_delete_term( $delete, $taxonomy );
 		}
@@ -108,7 +108,7 @@ class Synchronizer {
 		add_filter( 'cron_schedules', [ $this, 'add_cron_recurrence_interval' ] );
 		add_action( 'update_stocks_job_action', function () {
 			if ( $this->integration->get_debug_log() ) {
-				wc_get_logger()->notice( 'Automater.pl: Running update stocks job (cron)' );
+				wc_get_logger()->notice( 'Automater: Running update stocks job (cron)' );
 			}
 			$this->update_stocks_job();
 		} );
@@ -118,7 +118,7 @@ class Synchronizer {
 	public function add_cron_recurrence_interval( $schedules ) {
 		$schedules['5min'] = array(
 			'interval' => 300,
-			'display'  => __( 'Every 5 Minutes', 'automater-pl' )
+			'display'  => __( 'Every 5 Minutes', 'automater' )
 		);
 
 		return $schedules;
@@ -140,7 +140,7 @@ class Synchronizer {
 		}
 		if ( ! wp_next_scheduled( 'update_stocks_job_action' ) ) {
 			if ( $this->integration->get_debug_log() ) {
-				wc_get_logger()->notice( 'Automater.pl: Creating new cron job' );
+				wc_get_logger()->notice( 'Automater: Creating new cron job' );
 			}
 			wp_schedule_event( time(), '5min', 'update_stocks_job_action' );
 		}
@@ -156,7 +156,7 @@ class Synchronizer {
 		}
 
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( 'Automater.pl: Running update stocks job (manual)' );
+			wc_get_logger()->notice( 'Automater: Running update stocks job (manual)' );
 		}
 
 		$referer = wp_unslash( $_SERVER['HTTP_REFERER'] );
@@ -207,17 +207,17 @@ class Synchronizer {
 	 * @param $automater_product_id string
 	 */
 	protected function update_product_stock_from_automater( $product, $automater_product_id ) {
-        wc_get_logger()->notice( 'Automater.pl: Trying to update product stock: ID ' . $product->get_id() );
+        wc_get_logger()->notice( 'Automater: Trying to update product stock: ID ' . $product->get_id() );
 
 		if ( ! $product->get_manage_stock() ) {
-            wc_get_logger()->notice( 'Automater.pl: Continuing, product does not using managed stock' );
+            wc_get_logger()->notice( 'Automater: Continuing, product does not using managed stock' );
 			return;
 		}
 
 		$qty = $this->proxy->get_count_for_product( $automater_product_id );
 
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( 'Automater.pl: Updating product stock: ID ' . $product->get_id() . ', quantity ' . $qty );
+			wc_get_logger()->notice( 'Automater: Updating product stock: ID ' . $product->get_id() . ', quantity ' . $qty );
 		}
 
 		$product->set_stock_quantity( $qty );

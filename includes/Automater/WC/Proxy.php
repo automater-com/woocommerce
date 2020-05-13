@@ -1,6 +1,6 @@
 <?php
 
-namespace KutybaIt\Automater\Automater;
+namespace Automater\WC;
 
 use AutomaterSDK\Client\Client;
 use AutomaterSDK\Exception\ApiException;
@@ -31,13 +31,13 @@ class Proxy {
 
 			return $product->getAvailableCodes();
 		} catch ( UnauthorizedException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: Invalid API key' );
+			wc_get_logger()->error( 'Automater: Invalid API key' );
 		} catch ( TooManyRequestsException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: Too many requests to Automater: ' . $exception->getMessage() );
+			wc_get_logger()->error( 'Automater: Too many requests to Automater: ' . $exception->getMessage() );
 		} catch ( NotFoundException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: Not found - invalid params' );
+			wc_get_logger()->error( 'Automater: Not found - invalid params' );
 		} catch ( ApiException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: ' . $exception->getMessage() );
+			wc_get_logger()->error( 'Automater: ' . $exception->getMessage() );
 		}
 
 		return 0;
@@ -126,13 +126,13 @@ class Proxy {
 		try {
 			return $client->getProducts( $productRequest );
 		} catch ( UnauthorizedException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: Invalid API key' );
+			wc_get_logger()->error( 'Automater: Invalid API key' );
 		} catch ( TooManyRequestsException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: Too many requests to Automater: ' . $exception->getMessage() );
+			wc_get_logger()->error( 'Automater: Too many requests to Automater: ' . $exception->getMessage() );
 		} catch ( NotFoundException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: Not found - invalid params' );
+			wc_get_logger()->error( 'Automater: Not found - invalid params' );
 		} catch ( ApiException $exception ) {
-			wc_get_logger()->error( 'Automater.pl: ' . $exception->getMessage() );
+			wc_get_logger()->error( 'Automater: ' . $exception->getMessage() );
 		}
 
 		return [];

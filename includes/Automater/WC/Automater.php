@@ -1,8 +1,8 @@
 <?php
 
-namespace KutybaIt\Automater;
+namespace Automater\WC;
 
-use KutybaIt\Automater\WC\Integration;
+use Automater\WC\Integration;
 
 class Automater {
 	/** @var Automater */
@@ -25,11 +25,11 @@ class Automater {
 	}
 
 	private function set_locale() {
-		add_action( 'plugins_loaded', [ di_automater_pl( I18n::class ), 'load_plugin_textdomain' ] );
+		add_action( 'plugins_loaded', [ di_automater( I18n::class ), 'load_plugin_textdomain' ] );
 	}
 
 	private function init_wc_actions() {
-		add_action( 'plugins_loaded', [ Integration\Register::class, 'register_wc_integration' ] );
+		add_action( 'plugins_loaded', [ Register::class, 'register_wc_integration' ] );
 
 		if ( $this->wc_active() ) {
 			add_filter( 'woocommerce_integrations', [ $this, 'init_wc' ] );

@@ -1,2 +1,2 @@
-# WooCommerce integration with Automater.pl
-[Click here](https://automater.pl/pl/integracje/woocommerce) for Polish install instructions, or [here](https://automater.pl/pl/integracje/woocommerce) for English version.
+# WooCommerce integration with Automater
+[Click here](https://automater.pl/pl/integracje/woocommerce) for Polish install instructions, or [here](https://automater.com/p/p-integrations/woocommerce) for English version.

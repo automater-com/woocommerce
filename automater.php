@@ -1,21 +1,21 @@
 <?php
 /**
- * Plugin Name: Automater.pl
- * Plugin URI: https://automater.pl
- * Description: WooCommerce integration with Automater.pl
- * Version: 0.2.1
- * Author: kutyba.it
- * Author URI: https://kutyba.it
+ * Plugin Name: Automater
+ * Plugin URI: https://automater.com
+ * Description: WooCommerce integration with Automater
+ * Version: 0.2.2
+ * Author: Automater sp. z o.o.
+ * Author URI: https://automater.com
  * Requires at least: 4.8
  * Tested up to: 4.9
  *
- * Text Domain: automater-pl
+ * Text Domain: automater
  * Domain Path: /languages
  *
  * WC requires at least: 3.2
- * WC tested up to: 3.2
+ * WC tested up to: 4.1
  *
- * Copyright: © 2017 Mateusz Kutyba.
+ * Copyright: © 2017-2020 Automater sp. z o.o.
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-__( 'WooCommerce integration with Automater.pl', 'automater-pl' ); // plugin description for poedit
+__( 'WooCommerce integration with Automater', 'automater' );
 
 if ( ! defined( 'AUTOMATER_PLUGIN_FILE' ) ) {
 	define( 'AUTOMATER_PLUGIN_FILE', __FILE__ );
@@ -35,21 +35,21 @@ require_once 'includes/autoload.php';
 require_once 'includes/DI.php';
 require_once 'vendor/autoload.php';
 
-use \KutybaIt\Automater\Automater;
-use \KutybaIt\Automater\Activator;
+use \Automater\WC\Automater;
+use \Automater\WC\Activator;
 
-function activate_automater_pl() {
+function activate_automater() {
 	Activator::activate();
 }
 
-function deactivate_automater_pl() {
+function deactivate_automater() {
 	Activator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_automater_pl' );
-register_deactivation_hook( __FILE__, 'deactivate_automater_pl' );
+register_activation_hook( __FILE__, 'activate_automater' );
+register_deactivation_hook( __FILE__, 'deactivate_automater' );
 
-function di_automater_pl( $name ) {
+function di_automater( $name ) {
 	return DI::getInstance()->getContainer()->get( $name );
 }
 

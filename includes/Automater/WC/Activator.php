@@ -1,8 +1,8 @@
 <?php
 
-namespace KutybaIt\Automater;
+namespace Automater\WC;
 
-use KutybaIt\Automater\WC\Synchronizer;
+use Automater\WC\Synchronizer;
 
 class Activator {
 	public static function activate() {

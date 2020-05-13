@@ -1,6 +1,6 @@
 <?php
 
-namespace KutybaIt\Automater\WC;
+namespace Automater\WC;
 
 use AutomaterSDK\Exception\ApiException;
 use AutomaterSDK\Exception\NotFoundException;
@@ -9,7 +9,7 @@ use AutomaterSDK\Exception\UnauthorizedException;
 use AutomaterSDK\Response\PaymentResponse;
 use AutomaterSDK\Response\TransactionResponse;
 use Exception;
-use KutybaIt\Automater\Automater\Proxy;
+use Automater\WC\Proxy;
 use WC_Order;
 use WC_Order_Item_Product;
 
@@ -28,7 +28,7 @@ class OrderProcessor {
 		}
 
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( "Automater.pl: Order has been placed: ID $order_id" );
+			wc_get_logger()->notice( "Automater: Order has been placed: ID $order_id" );
 		}
 
 		$this->create_transaction( $order_id );
@@ -40,7 +40,7 @@ class OrderProcessor {
 		}
 
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( "Automater.pl: Payment has been received: ID $order_id" );
+			wc_get_logger()->notice( "Automater: Payment has been received: ID $order_id" );
 		}
 
 		$this->pay_transaction( $order_id );
@@ -51,13 +51,13 @@ class OrderProcessor {
 
 		$items    = $order->get_items();
 		$result   = [];
-		$result[] = __( 'Automater.pl codes:', 'automater-pl' );
+		$result[] = __( 'Automater codes:', 'automater' );
 
 		$products = $this->transform_order_items( $items, $result );
 		$this->create_automater_transaction( $products, $order, $result );
 		$this->add_order_note( $result, $order );
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( 'Automater.pl: ' . implode( ' | ', $result ) );
+			wc_get_logger()->notice( 'Automater: ' . implode( ' | ', $result ) );
 		}
 	}
 
@@ -68,12 +68,12 @@ class OrderProcessor {
 			try {
 				$automater_product_id = $this->integration->get_automater_product_id_for_wc_product( $item->get_product() );
 				if ( ! $automater_product_id ) {
-					$result[] = sprintf( __( 'Product not managed by automater: %s [%s]', 'automater-pl' ), $item->get_name(), $item->get_id() );
+					$result[] = sprintf( __( 'Product not managed by automater: %s [%s]', 'automater' ), $item->get_name(), $item->get_id() );
 					continue;
 				}
 				$qty = (int) $item->get_quantity();
 				if ( $qty <= 0 || is_nan( $qty ) ) {
-					$result[] = sprintf( __( 'Invalid quantity of product: %s [%s]', 'automater-pl' ), $item->get_name(), $item->get_id() );
+					$result[] = sprintf( __( 'Invalid quantity of product: %s [%s]', 'automater' ), $item->get_name(), $item->get_id() );
 					continue;
 				}
 				if ( ! isset( $products[ $automater_product_id ] ) ) {
@@ -93,26 +93,26 @@ class OrderProcessor {
 	protected function create_automater_transaction( array $products, WC_Order $order, array &$result ) {
 		if ( count( $products ) ) {
 			if ( $this->integration->get_debug_log() ) {
-				wc_get_logger()->notice( 'Automater.pl: Creating automater transaction' );
-				wc_get_logger()->notice( 'Automater.pl: ' . $order->get_billing_email() );
-				wc_get_logger()->notice( 'Automater.pl: ' . $order->get_billing_phone() );
-				wc_get_logger()->notice( 'Automater.pl: ' . sprintf( __( 'Order from %s, id: #%s', 'automater-pl' ), get_bloginfo( 'name' ), $order->get_order_number() ) );
+				wc_get_logger()->notice( 'Automater: Creating automater transaction' );
+				wc_get_logger()->notice( 'Automater: ' . $order->get_billing_email() );
+				wc_get_logger()->notice( 'Automater: ' . $order->get_billing_phone() );
+				wc_get_logger()->notice( 'Automater: ' . sprintf( __( 'Order from %s, id: #%s', 'automater' ), get_bloginfo( 'name' ), $order->get_order_number() ) );
 			}
 
 			$email = $order->get_billing_email();
 			$phone = $order->get_billing_phone();
-			$label = sprintf( __( 'Order from %s, id: #%s', 'automater-pl' ), get_bloginfo( 'name' ), $order->get_order_number() );
+			$label = sprintf( __( 'Order from %s, id: #%s', 'automater' ), get_bloginfo( 'name' ), $order->get_order_number() );
 
 			try {
 				/** @var TransactionResponse $response */
 				$response = $this->proxy->create_transaction( $products, $email, $phone, $label );
 				if ( $this->integration->get_debug_log() ) {
-					wc_get_logger()->notice( 'Automater.pl: ' . var_export( $response, true ) );
+					wc_get_logger()->notice( 'Automater: ' . var_export( $response, true ) );
 				}
 				if ( $response && $automater_cart_id = $response->getCartId() ) {
 					$order->update_meta_data( 'automater_cart_id', $automater_cart_id );
 					$order->save();
-					$result[] = sprintf( __( 'Created cart number: %s', 'automater-pl' ), $automater_cart_id );
+					$result[] = sprintf( __( 'Created cart number: %s', 'automater' ), $automater_cart_id );
 				}
 			} catch ( UnauthorizedException $exception ) {
 				$this->handle_exception( $result, 'Invalid API key' );
@@ -148,12 +148,12 @@ class OrderProcessor {
 		}
 
 		$result   = [];
-		$result[] = __( 'Automater.pl codes:', 'automater-pl' );
+		$result[] = __( 'Automater codes:', 'automater' );
 
 		$this->create_automater_payment( $order, $automater_cart_id, $result );
 		$this->add_order_note( $result, $order );
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( 'Automater.pl: ' . implode( ' | ', $result ) );
+			wc_get_logger()->notice( 'Automater: ' . implode( ' | ', $result ) );
 		}
 	}
 
@@ -167,10 +167,10 @@ class OrderProcessor {
 			/** @var PaymentResponse $response */
 			$response = $this->proxy->create_payment( $automater_cart_id, $payment_id, $amount, $currency, $description );
 			if ( $this->integration->get_debug_log() ) {
-				wc_get_logger()->notice( 'Automater.pl: ' . var_export( $response, true ) );
+				wc_get_logger()->notice( 'Automater: ' . var_export( $response, true ) );
 			}
 			if ( $response ) {
-				$result[] = sprintf( __( 'Automater.pl - paid successfully: %s', 'automater-pl' ), $automater_cart_id );
+				$result[] = sprintf( __( 'Automater - paid successfully: %s', 'automater' ), $automater_cart_id );
 			}
 		} catch ( UnauthorizedException $exception ) {
 			$this->handle_exception( $result, 'Invalid API key' );
@@ -185,8 +185,8 @@ class OrderProcessor {
 
 	protected function handle_exception( array &$result, $exception_message ) {
 		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( 'Automater.pl: ' . $exception_message );
+			wc_get_logger()->notice( 'Automater: ' . $exception_message );
 		}
-		$result[] = 'Automater.pl: ' . $exception_message;
+		$result[] = 'Automater: ' . $exception_message;
 	}
 }

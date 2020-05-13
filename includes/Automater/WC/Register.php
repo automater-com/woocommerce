@@ -1,9 +1,9 @@
 <?php
 
-namespace KutybaIt\Automater\WC\Integration;
+namespace Automater\WC;
 
-use KutybaIt\Automater\Notice;
-use KutybaIt\Automater\WC\Integration;
+use Automater\WC\Notice;
+use Automater\WC\Integration;
 
 class Register {
 	/**
@@ -16,7 +16,7 @@ class Register {
 			add_filter( 'woocommerce_integrations', [ self::class, 'add_integration' ] );
 		} else {
 			add_action( 'admin_notices', function () {
-				Notice::render_error( __( 'Unable to register Automater.pl integration. Is WooCommerce installed?', 'automater-pl' ) );
+				Notice::render_error( __( 'Unable to register Automater integration. Is WooCommerce installed?', 'automater' ) );
 			} );
 		}
 	}

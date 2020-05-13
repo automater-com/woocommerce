@@ -1,6 +1,6 @@
 <?php
 
-namespace KutybaIt\Automater;
+namespace Automater\WC;
 
 class Notice {
 	public static function render_error( $message ) {
