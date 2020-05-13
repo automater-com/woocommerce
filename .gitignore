@@ -1,0 +1,16 @@
+composer.lock
+
+vendor/**/examples
+vendor/**/docs
+vendor/**/doc
+vendor/**/benchmarks
+
+vendor/**/README*
+vendor/**/CONTRIBUTING*
+vendor/**/CHANGELOG*
+vendor/**/UPGRADING*
+vendor/**/Dockerfile
+vendor/**/.gitignore
+vendor/**/.gitattributes
+vendor/**/composer.lock
+vendor/**/Makefile

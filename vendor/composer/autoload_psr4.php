@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Intl\\Idn\\' => array($vendorDir . '/symfony/polyfill-intl-idn'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'PhpDocReader\\' => array($vendorDir . '/php-di/phpdoc-reader/src/PhpDocReader'),
@@ -14,6 +17,7 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib/Doctrine/Common/Collections'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src/DI'),
     'AutomaterSDK\\' => array($vendorDir . '/automater-pl/rest-php-sdk/src'),
 );

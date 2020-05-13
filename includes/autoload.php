@@ -1,6 +1,6 @@
 <?php
 spl_autoload_register( function ( $class ) {
-	$prefix   = 'KutybaIt\\';
+	$prefix   = 'Automater\\';
 	$base_dir = __DIR__ . '/';
 	$len      = strlen( $prefix );
 	if ( strncmp( $prefix, $class, $len ) !== 0 ) {

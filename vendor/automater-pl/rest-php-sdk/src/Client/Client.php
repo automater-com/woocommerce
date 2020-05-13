@@ -5,14 +5,25 @@ use AutomaterSDK\Exception\ApiException;
 use AutomaterSDK\Exception\NotFoundException;
 use AutomaterSDK\Exception\TooManyRequestsException;
 use AutomaterSDK\Exception\UnauthorizedException;
+use AutomaterSDK\Request\AddCodesRequest;
+use AutomaterSDK\Request\AddNoteToTransactionRequest;
+use AutomaterSDK\Request\CreateDatabaseRequest;
+use AutomaterSDK\Request\DatabasesRequest;
 use AutomaterSDK\Request\PaymentRequest;
 use AutomaterSDK\Request\ProductsRequest;
 use AutomaterSDK\Request\TransactionRequest;
+use AutomaterSDK\Request\UploadFileRequest;
+use AutomaterSDK\Response\AddCodesResponse;
+use AutomaterSDK\Response\AddNoteToTransactionResponse;
+use AutomaterSDK\Response\CreateDatabaseResponse;
+use AutomaterSDK\Response\DatabaseResponse;
+use AutomaterSDK\Response\DatabasesResponse;
 use AutomaterSDK\Response\Entity\Product;
 use AutomaterSDK\Response\PaymentResponse;
 use AutomaterSDK\Response\ProductDetailsResponse;
 use AutomaterSDK\Response\ProductsResponse;
 use AutomaterSDK\Response\TransactionResponse;
+use AutomaterSDK\Response\UploadFileResponse;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
@@ -85,6 +96,117 @@ class Client
     }
 
     /**
+     * Create new database.
+     *
+     * @param CreateDatabaseRequest $createDatabaseRequest
+     * @return CreateDatabaseResponse
+     * @throws ApiException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws TooManyRequestsException
+     */
+    public function createDatabase(CreateDatabaseRequest $createDatabaseRequest)
+    {
+        $request = new Request('POST', 'databases.json', [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'X-Api-Sign' => $createDatabaseRequest->getSignature($this->apiSecret)
+        ], $createDatabaseRequest->toQueryString());
+
+        $response = $this->_handleSyncRequest($request);
+
+        return CreateDatabaseResponse::create($response);
+    }
+
+    /**
+     * Get databases from Automater.
+     *
+     * @param DatabasesRequest $databasesRequest
+     * @return DatabasesResponse
+     * @throws ApiException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws TooManyRequestsException
+     */
+    public function getDatabases(DatabasesRequest $databasesRequest)
+    {
+        $uri = new Uri('databases.json');
+        $uri = $uri->withQuery($databasesRequest->toQueryString());
+
+        $request = new Request('GET', $uri);
+
+        $response = $this->_handleSyncRequest($request);
+
+        return DatabasesResponse::create($response);
+    }
+
+    /**
+     * Get database from Automater.
+     *
+     * @param int $databaseId
+     * @return DatabaseResponse
+     * @throws ApiException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws TooManyRequestsException
+     */
+    public function getDatabase($databaseId)
+    {
+        $uri = new Uri('databases/' . $databaseId . '.json');
+
+        $request = new Request('GET', $uri);
+
+        $response = $this->_handleSyncRequest($request);
+
+        return DatabaseResponse::create($response);
+    }
+
+    /**
+     * Add codes to database.
+     *
+     * @param int $databaseId
+     * @param AddCodesRequest $addCodesRequest
+     * @return AddCodesResponse
+     * @throws ApiException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws TooManyRequestsException
+     */
+    public function addCodes($databaseId, AddCodesRequest $addCodesRequest)
+    {
+        $request = new Request('POST', 'codes/' . $databaseId . '.json', [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'X-Api-Sign' => $addCodesRequest->getSignature($this->apiSecret)
+        ], $addCodesRequest->toQueryString());
+
+        $response = $this->_handleSyncRequest($request);
+
+        return AddCodesResponse::create($response);
+    }
+
+    /**
+     * Upload file to database.
+     *
+     * @param int $databaseId
+     * @param UploadFileRequest $uploadFileRequest
+     * @return UploadFileResponse
+     * @throws ApiException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws TooManyRequestsException
+     */
+    public function uploadFile($databaseId, UploadFileRequest $uploadFileRequest)
+    {
+        $request = new Request('POST', 'files/' . $databaseId . '.json', [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'X-Api-Sign' => $uploadFileRequest->getSignature($this->apiSecret)
+        ], $uploadFileRequest->toQueryString());
+
+        $response = $this->_handleSyncRequest($request);
+
+        return UploadFileResponse::create($response);
+    }
+
+    /**
      * Create new transaction.
      *
      * @param TransactionRequest $transactionRequest
@@ -127,6 +249,29 @@ class Client
         $response = $this->_handleSyncRequest($request);
 
         return PaymentResponse::create($response);
+    }
+
+    /**
+     * Add note to transaction registry.
+     *
+     * @param int $transactionId
+     * @param AddNoteToTransactionRequest $addNoteToTransactionRequest
+     * @return AddNoteToTransactionResponse
+     * @throws ApiException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws TooManyRequestsException
+     */
+    public function addNoteToTransaction($transactionId, AddNoteToTransactionRequest $addNoteToTransactionRequest)
+    {
+        $request = new Request('POST', 'transactions/' . $transactionId . '/note.json', [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'X-Api-Sign' => $addNoteToTransactionRequest->getSignature($this->apiSecret)
+        ], $addNoteToTransactionRequest->toQueryString());
+
+        $response = $this->_handleSyncRequest($request);
+
+        return AddNoteToTransactionResponse::create($response);
     }
 
     /**
@@ -183,7 +328,7 @@ class Client
                 throw new TooManyRequestsException($json['message']);
             case 500:
                 $json = json_decode($response, true);
-                throw new ApiException($json['code'], $json['message']);
+                throw new ApiException($json['code'], $json['message'], isset($json['validation']) ? $json['validation'] : []);
                 break;
         }
 

@@ -1,37 +1,113 @@
 [
     {
-        "name": "doctrine/collections",
-        "version": "v1.4.0",
-        "version_normalized": "1.4.0.0",
+        "name": "automater-pl/rest-php-sdk",
+        "version": "0.1.8",
+        "version_normalized": "0.1.8.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/doctrine/collections.git",
-            "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba"
+            "url": "https://github.com/automater-pl/rest-php-sdk.git",
+            "reference": "99451d8c5515f285149870a2035e91733986cdcc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/collections/zipball/1a4fb7e902202c33cce8c55989b945612943c2ba",
-            "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba",
+            "url": "https://api.github.com/repos/automater-pl/rest-php-sdk/zipball/99451d8c5515f285149870a2035e91733986cdcc",
+            "reference": "99451d8c5515f285149870a2035e91733986cdcc",
             "shasum": ""
         },
         "require": {
-            "php": "^5.6 || ^7.0"
+            "doctrine/collections": "^1.4.0",
+            "guzzlehttp/guzzle": "^6.3.0",
+            "php": ">=5.5"
+        },
+        "time": "2019-10-29T16:43:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "AutomaterSDK\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "proprietary"
+        ],
+        "authors": [
+            {
+                "name": "Automater sp. z o.o.",
+                "email": "kontakt@automater.pl"
+            }
+        ],
+        "description": "PHP SDK for Automater REST API"
+    },
+    {
+        "name": "container-interop/container-interop",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/container-interop/container-interop.git",
+            "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+            "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+            "shasum": ""
+        },
+        "require": {
+            "psr/container": "^1.0"
+        },
+        "time": "2017-02-14T19:40:03+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Interop\\Container\\": "src/Interop/Container/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
+        "homepage": "https://github.com/container-interop/container-interop",
+        "abandoned": "psr/container"
+    },
+    {
+        "name": "doctrine/collections",
+        "version": "1.6.4",
+        "version_normalized": "1.6.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/doctrine/collections.git",
+            "reference": "6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/doctrine/collections/zipball/6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7",
+            "reference": "6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1.3"
         },
         "require-dev": {
-            "doctrine/coding-standard": "~0.1@dev",
-            "phpunit/phpunit": "^5.7"
+            "doctrine/coding-standard": "^6.0",
+            "phpstan/phpstan-shim": "^0.9.2",
+            "phpunit/phpunit": "^7.0",
+            "vimeo/psalm": "^3.2.2"
         },
-        "time": "2017-01-03 10:49:41",
+        "time": "2019-11-13T13:07:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.3.x-dev"
+                "dev-master": "1.6.x-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "Doctrine\\Common\\Collections\\": "lib/"
+            "psr-4": {
+                "Doctrine\\Common\\Collections\\": "lib/Doctrine/Common/Collections"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -40,16 +116,16 @@
         ],
         "authors": [
             {
+                "name": "Guilherme Blanco",
+                "email": "guilhermeblanco@gmail.com"
+            },
+            {
                 "name": "Roman Borschel",
                 "email": "roman@code-factory.org"
             },
             {
                 "name": "Benjamin Eberlei",
                 "email": "kontakt@beberlei.de"
-            },
-            {
-                "name": "Guilherme Blanco",
-                "email": "guilhermeblanco@gmail.com"
             },
             {
                 "name": "Jonathan Wage",
@@ -60,12 +136,82 @@
                 "email": "schmittjoh@gmail.com"
             }
         ],
-        "description": "Collections Abstraction library",
-        "homepage": "http://www.doctrine-project.org",
+        "description": "PHP Doctrine Collections library that adds additional functionality on top of PHP arrays.",
+        "homepage": "https://www.doctrine-project.org/projects/collections.html",
         "keywords": [
             "array",
             "collections",
-            "iterator"
+            "iterators",
+            "php"
+        ]
+    },
+    {
+        "name": "guzzlehttp/guzzle",
+        "version": "6.5.3",
+        "version_normalized": "6.5.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/guzzle.git",
+            "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/aab4ebd862aa7d04f01a4b51849d657db56d882e",
+            "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "guzzlehttp/promises": "^1.0",
+            "guzzlehttp/psr7": "^1.6.1",
+            "php": ">=5.5",
+            "symfony/polyfill-intl-idn": "^1.11"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
+            "psr/log": "^1.1"
+        },
+        "suggest": {
+            "psr/log": "Required for using the Log middleware"
+        },
+        "time": "2020-04-18T10:38:46+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "6.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
         ]
     },
     {
@@ -89,7 +235,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4.0"
         },
-        "time": "2016-12-20 10:07:11",
+        "time": "2016-12-20T10:07:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -122,87 +268,40 @@
         ]
     },
     {
-        "name": "psr/http-message",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/http-message.git",
-            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-08-06 14:39:51",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Http\\Message\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for HTTP messages",
-        "homepage": "https://github.com/php-fig/http-message",
-        "keywords": [
-            "http",
-            "http-message",
-            "psr",
-            "psr-7",
-            "request",
-            "response"
-        ]
-    },
-    {
         "name": "guzzlehttp/psr7",
-        "version": "1.4.2",
-        "version_normalized": "1.4.2.0",
+        "version": "1.6.1",
+        "version_normalized": "1.6.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+            "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+            "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.0",
-            "psr/http-message": "~1.0"
+            "psr/http-message": "~1.0",
+            "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
         },
         "provide": {
             "psr/http-message-implementation": "1.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "~4.0"
+            "ext-zlib": "*",
+            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
         },
-        "time": "2017-03-20 17:10:46",
+        "suggest": {
+            "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+        },
+        "time": "2019-07-01T23:21:34+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.4-dev"
+                "dev-master": "1.6-dev"
             }
         },
         "installation-source": "dist",
@@ -233,242 +332,13 @@
         "keywords": [
             "http",
             "message",
+            "psr-7",
             "request",
             "response",
             "stream",
             "uri",
             "url"
         ]
-    },
-    {
-        "name": "guzzlehttp/guzzle",
-        "version": "6.3.0",
-        "version_normalized": "6.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/guzzle/guzzle.git",
-            "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-            "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/promises": "^1.0",
-            "guzzlehttp/psr7": "^1.4",
-            "php": ">=5.5"
-        },
-        "require-dev": {
-            "ext-curl": "*",
-            "phpunit/phpunit": "^4.0 || ^5.0",
-            "psr/log": "^1.0"
-        },
-        "suggest": {
-            "psr/log": "Required for using the Log middleware"
-        },
-        "time": "2017-06-22 18:50:49",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "6.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "src/functions_include.php"
-            ],
-            "psr-4": {
-                "GuzzleHttp\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Michael Dowling",
-                "email": "mtdowling@gmail.com",
-                "homepage": "https://github.com/mtdowling"
-            }
-        ],
-        "description": "Guzzle is a PHP HTTP client library",
-        "homepage": "http://guzzlephp.org/",
-        "keywords": [
-            "client",
-            "curl",
-            "framework",
-            "http",
-            "http client",
-            "rest",
-            "web service"
-        ]
-    },
-    {
-        "name": "automater-pl/rest-php-sdk",
-        "version": "v0.1.2",
-        "version_normalized": "0.1.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/automater-pl/rest-php-sdk.git",
-            "reference": "fe76c12d8d3f1205077da0b0e5eb25712ce0ec75"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/automater-pl/rest-php-sdk/zipball/fe76c12d8d3f1205077da0b0e5eb25712ce0ec75",
-            "reference": "fe76c12d8d3f1205077da0b0e5eb25712ce0ec75",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/collections": "v1.4.0",
-            "guzzlehttp/guzzle": "6.3.0",
-            "php": ">=5.5"
-        },
-        "time": "2018-01-14 17:18:04",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "AutomaterSDK\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "proprietary"
-        ],
-        "authors": [
-            {
-                "name": "Automater sp. z o.o.",
-                "email": "kontakt@automater.pl"
-            }
-        ],
-        "description": "PHP SDK for Automater REST API"
-    },
-    {
-        "name": "php-di/phpdoc-reader",
-        "version": "2.0.1",
-        "version_normalized": "2.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/PHP-DI/PhpDocReader.git",
-            "reference": "83f5ead159defccfa8e7092e5b6c1c533b326d68"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/PHP-DI/PhpDocReader/zipball/83f5ead159defccfa8e7092e5b6c1c533b326d68",
-            "reference": "83f5ead159defccfa8e7092e5b6c1c533b326d68",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.6"
-        },
-        "time": "2015-11-29 10:34:25",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "PhpDocReader\\": "src/PhpDocReader"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "PhpDocReader parses @var and @param values in PHP docblocks (supports namespaced class names with the same resolution rules as PHP)",
-        "keywords": [
-            "phpdoc",
-            "reflection"
-        ]
-    },
-    {
-        "name": "psr/container",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/container.git",
-            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2017-02-14 16:28:37",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Container\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common Container Interface (PHP FIG PSR-11)",
-        "homepage": "https://github.com/php-fig/container",
-        "keywords": [
-            "PSR-11",
-            "container",
-            "container-interface",
-            "container-interop",
-            "psr"
-        ]
-    },
-    {
-        "name": "container-interop/container-interop",
-        "version": "1.2.0",
-        "version_normalized": "1.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/container-interop/container-interop.git",
-            "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-            "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-            "shasum": ""
-        },
-        "require": {
-            "psr/container": "^1.0"
-        },
-        "time": "2017-02-14 19:40:03",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Interop\\Container\\": "src/Interop/Container/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-        "homepage": "https://github.com/container-interop/container-interop"
     },
     {
         "name": "php-di/invoker",
@@ -492,7 +362,7 @@
             "athletic/athletic": "~0.1.8",
             "phpunit/phpunit": "~4.5"
         },
-        "time": "2016-07-14 13:09:58",
+        "time": "2016-07-14T13:09:58+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -557,7 +427,7 @@
             "doctrine/cache": "Install it if you want to use the cache (version ~1.4)",
             "ocramius/proxy-manager": "Install it if you want to use lazy injection (version ~1.0 or ~2.0)"
         },
-        "time": "2017-12-03 08:20:27",
+        "time": "2017-12-03T08:20:27+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -578,6 +448,414 @@
             "container",
             "dependency injection",
             "di"
+        ]
+    },
+    {
+        "name": "php-di/phpdoc-reader",
+        "version": "2.1.1",
+        "version_normalized": "2.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHP-DI/PhpDocReader.git",
+            "reference": "15678f7451c020226807f520efb867ad26fbbfcf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHP-DI/PhpDocReader/zipball/15678f7451c020226807f520efb867ad26fbbfcf",
+            "reference": "15678f7451c020226807f520efb867ad26fbbfcf",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.6"
+        },
+        "time": "2019-09-26T11:24:58+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhpDocReader\\": "src/PhpDocReader"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "PhpDocReader parses @var and @param values in PHP docblocks (supports namespaced class names with the same resolution rules as PHP)",
+        "keywords": [
+            "phpdoc",
+            "reflection"
+        ]
+    },
+    {
+        "name": "psr/container",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/container.git",
+            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2017-02-14T16:28:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Container\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common Container Interface (PHP FIG PSR-11)",
+        "homepage": "https://github.com/php-fig/container",
+        "keywords": [
+            "PSR-11",
+            "container",
+            "container-interface",
+            "container-interop",
+            "psr"
+        ]
+    },
+    {
+        "name": "psr/http-message",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/http-message.git",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-08-06T14:39:51+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Http\\Message\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for HTTP messages",
+        "homepage": "https://github.com/php-fig/http-message",
+        "keywords": [
+            "http",
+            "http-message",
+            "psr",
+            "psr-7",
+            "request",
+            "response"
+        ]
+    },
+    {
+        "name": "ralouphie/getallheaders",
+        "version": "3.0.3",
+        "version_normalized": "3.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ralouphie/getallheaders.git",
+            "reference": "120b605dfeb996808c31b6477290a714d356e822"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+            "reference": "120b605dfeb996808c31b6477290a714d356e822",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "php-coveralls/php-coveralls": "^2.1",
+            "phpunit/phpunit": "^5 || ^6.5"
+        },
+        "time": "2019-03-08T08:55:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/getallheaders.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ralph Khattar",
+                "email": "ralph.khattar@gmail.com"
+            }
+        ],
+        "description": "A polyfill for getallheaders."
+    },
+    {
+        "name": "symfony/polyfill-intl-idn",
+        "version": "v1.15.0",
+        "version_normalized": "1.15.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/polyfill-intl-idn.git",
+            "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
+            "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "symfony/polyfill-mbstring": "^1.3",
+            "symfony/polyfill-php72": "^1.10"
+        },
+        "suggest": {
+            "ext-intl": "For best performance"
+        },
+        "time": "2020-03-09T19:04:49+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.15-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Intl\\Idn\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Laurent Bassin",
+                "email": "laurent@bassin.info"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "idn",
+            "intl",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "symfony/polyfill-mbstring",
+        "version": "v1.15.0",
+        "version_normalized": "1.15.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/polyfill-mbstring.git",
+            "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
+            "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "suggest": {
+            "ext-mbstring": "For best performance"
+        },
+        "time": "2020-03-09T19:04:49+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.15-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Mbstring\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony polyfill for the Mbstring extension",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "mbstring",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "symfony/polyfill-php72",
+        "version": "v1.15.0",
+        "version_normalized": "1.15.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/polyfill-php72.git",
+            "reference": "37b0976c78b94856543260ce09b460a7bc852747"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/37b0976c78b94856543260ce09b460a7bc852747",
+            "reference": "37b0976c78b94856543260ce09b460a7bc852747",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2020-02-27T09:26:54+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.15-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Php72\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
         ]
     }
 ]

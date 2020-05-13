@@ -33,6 +33,8 @@ class PhpDocReader
         'object',
         'callable',
         'resource',
+        'mixed',
+        'iterable',
     );
 
     /**
