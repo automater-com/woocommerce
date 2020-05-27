@@ -32,11 +32,11 @@ if ( ! defined( 'AUTOMATER_PLUGIN_FILE' ) ) {
 }
 
 require_once 'includes/autoload.php';
-require_once 'includes/DI.php';
 require_once 'vendor/autoload.php';
 
 use \Automater\WC\Automater;
 use \Automater\WC\Activator;
+use \Automater\WC\DI;
 
 function activate_automater() {
 	Activator::activate();

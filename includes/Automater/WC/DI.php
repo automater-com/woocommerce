@@ -1,4 +1,5 @@
 <?php
+namespace Automater\WC;
 
 use DI\ContainerBuilder;
 
