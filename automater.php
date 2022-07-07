@@ -3,7 +3,7 @@
  * Plugin Name: Automater
  * Plugin URI: https://automater.com
  * Description: WooCommerce integration with Automater
- * Version: 0.2.2
+ * Version: 0.2.3
  * Author: Automater sp. z o.o.
  * Author URI: https://automater.com
  * Requires at least: 5.0
