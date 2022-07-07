@@ -7,13 +7,13 @@
  * Author: Automater sp. z o.o.
  * Author URI: https://automater.com
  * Requires at least: 5.0
- * Tested up to: 5.4
+ * Tested up to: 5.9
  *
  * Text Domain: automater
  * Domain Path: /languages
  *
  * WC requires at least: 3.2
- * WC tested up to: 4.1
+ * WC tested up to: 6.5
  *
  * Copyright: © 2017-2020 Automater sp. z o.o.
  * License: GNU General Public License v3.0
