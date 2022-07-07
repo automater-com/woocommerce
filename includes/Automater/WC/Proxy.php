@@ -103,12 +103,19 @@ class Proxy {
 
 	public function get_all_products() {
 		$productsResponse = $this->get_products( 1 );
-		$data             = $productsResponse->getData();
+		if (empty($productsResponse) || empty($productsResponse->getData())) {
+			return [];
+		}
+		
+		$data             = $productsResponse->getData()->toArray();
 
 		for ( $page = 2; $page <= $productsResponse->getPagesCount(); $page ++ ) {
             usleep(rand(200000, 500000));
 			$productsResponse = $this->get_products( $page );
-			$data             = array_merge( $data, $productsResponse->getData() );
+			if (empty($productsResponse) || empty($productsResponse->getData())) {
+				return $data;
+			}
+			$data             = array_merge( $data, $productsResponse->getData()->toArray() );
 		}
 
 		return $data;
