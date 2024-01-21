@@ -47,7 +47,7 @@ class Integration extends WC_Integration {
 	protected function init_integration() {
 		$this->id                 = 'automater-integration';
 		$this->method_title       = __( 'Automater', 'automater' );
-		$this->method_description = sprintf( __( 'An integration with Automater by %s', 'automater' ), '<a href="https://automater.com" target="_blank">Automater sp. z o.o.</a>' );
+		$this->method_description = sprintf( __( 'An integration with %s', 'automater' ), '<a href="https://automater.com" target="_blank">Automater</a>' );
 		$link_import              = admin_url( 'admin-ajax.php?action=import_automater_products&nonce=' . wp_create_nonce( 'import_automater_products_nonce' ) );
 		$link_stocks              = admin_url( 'admin-ajax.php?action=update_automater_stocks&nonce=' . wp_create_nonce( 'update_automater_stocks_nonce' ) );
 		$this->method_description .= '<br><br><a href="' . $link_import . '" class="page-title-action">' . __( 'Import products from your Automater account', 'automater' ) . '</a>';
@@ -129,8 +129,10 @@ class Integration extends WC_Integration {
 
 	protected function init_order_hooks() {
 		// Hook order placed
-		add_action( 'woocommerce_checkout_update_order_meta', [ new OrderProcessor( $this ), 'order_placed' ] );
-		// Hook order processing (paid)
+        add_action( 'woocommerce_checkout_update_order_meta', [ new OrderProcessor( $this ), 'order_placed' ] );
+        add_action( 'woocommerce_order_status_changed', [ new OrderProcessor( $this ), 'order_placed' ] );
+
+        // Hook order processing (paid)
 		add_action( 'woocommerce_order_status_processing', [ new OrderProcessor( $this ), 'order_processing' ] );
 	}
 

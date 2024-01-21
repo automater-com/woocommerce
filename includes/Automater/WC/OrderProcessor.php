@@ -46,20 +46,28 @@ class OrderProcessor {
 		$this->pay_transaction( $order_id );
 	}
 
-	protected function create_transaction( $order_id ) {
-		$order = wc_get_order( $order_id );
+    protected function create_transaction( $order_id ) {
+        $order = wc_get_order( $order_id );
 
-		$items    = $order->get_items();
-		$result   = [];
-		$result[] = __( 'Automater codes:', 'automater' );
+        if (!empty($order->get_meta('automater_cart_id'))) {
+            return;
+        }
 
-		$products = $this->transform_order_items( $items, $result );
-		$this->create_automater_transaction( $products, $order, $result );
-		$this->add_order_note( $result, $order );
-		if ( $this->integration->get_debug_log() ) {
-			wc_get_logger()->notice( 'Automater: ' . implode( ' | ', $result ) );
-		}
-	}
+        $items = $order->get_items();
+        if (empty($items)) {
+            return;
+        }
+
+        $result   = [];
+        $result[] = __( 'Automater codes:', 'automater' );
+
+        $products = $this->transform_order_items( $items, $result );
+        $this->create_automater_transaction( $products, $order, $result );
+        $this->add_order_note( $result, $order );
+        if ( $this->integration->get_debug_log() ) {
+            wc_get_logger()->notice( 'Automater: ' . implode( ' | ', $result ) );
+        }
+    }
 
 	protected function transform_order_items( array $items, array &$result ) {
 		$products = [];
