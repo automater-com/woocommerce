@@ -3,17 +3,17 @@
  * Plugin Name: Automater
  * Plugin URI: https://automater.com
  * Description: WooCommerce integration with Automater
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Automater
  * Author URI: https://automater.com
  * Requires at least: 5.0
- * Tested up to: 6.4
+ * Tested up to: 6.8.1
  *
  * Text Domain: automater
  * Domain Path: /languages
  *
  * WC requires at least: 3.2
- * WC tested up to: 8.5
+ * WC tested up to: 9.8.5
  *
  * Copyright: © 2017-2024 Automater
  * License: GNU General Public License v3.0
@@ -31,8 +31,8 @@ if ( ! defined( 'AUTOMATER_PLUGIN_FILE' ) ) {
 	define( 'AUTOMATER_PLUGIN_FILE', __FILE__ );
 }
 
-require_once 'includes/autoload.php';
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/includes/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use \Automater\WC\Automater;
 use \Automater\WC\Activator;
