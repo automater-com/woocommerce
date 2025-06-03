@@ -10,6 +10,7 @@ use AutomaterSDK\Response\PaymentResponse;
 use AutomaterSDK\Response\TransactionResponse;
 use Exception;
 use Automater\WC\Proxy;
+use Automattic\WooCommerce\Utilities\NumberUtil;
 use WC_Order;
 use WC_Order_Item_Product;
 
@@ -84,12 +85,18 @@ class OrderProcessor {
 					$result[] = sprintf( __( 'Invalid quantity of product: %s [%s]', 'automater' ), $item->get_name(), $item->get_id() );
 					continue;
 				}
+				$price = NumberUtil::round(((float)$item->get_total() + (float)$item->get_total_tax()) / $qty, 2);
+				if ($price <= 0) {
+					$result[] = sprintf( __( 'Invalid price of product: %s [%s]', 'automater' ), $item->get_name(), $item->get_id() );
+					continue;
+				}
 				if ( ! isset( $products[ $automater_product_id ] ) ) {
 					$products[ $automater_product_id ]['qty']      = 0;
-					$products[ $automater_product_id ]['price']    = round(($item->get_total() + $item->get_total_tax()) / $qty, 2);
+					$products[ $automater_product_id ]['price']    = 0.0;
 					$products[ $automater_product_id ]['currency'] = get_woocommerce_currency();
 				}
 				$products[ $automater_product_id ]['qty'] += $qty;
+				$products[ $automater_product_id ]['price'] += $price;
 			} catch ( Exception $e ) {
 				$result[] = $e->getMessage() . sprintf( ': %s [%s]', $item->get_name(), $item->get_id() );
 			}
